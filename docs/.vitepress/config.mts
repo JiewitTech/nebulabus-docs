@@ -7,6 +7,7 @@ const vitePressOptions = {
     i18nRouting: true,
     socialLinks: [
       { icon: "github", link: "https://github.com/JiewitTech/NebulaBus" },
+      { icon: "gitee", link: "https://gitee.com/jiewit-tech/NebulaBus" },
     ],
   },
 };
@@ -28,7 +29,8 @@ const vitePressI18nOptions = {
             { text: "Disposition", link: "/configuration" },
             { text: "Message", link: "/message" },
             { text: "Performance", link: "/performance" },
-            { text: "Stress test", link: "/press-test" },
+            { text: "Stress Test", link: "/press-test" },
+            { text: "Star Me", link: "/star-me" },
           ],
         },
       ],
@@ -44,6 +46,7 @@ const vitePressI18nOptions = {
             { text: "消息", link: "/zh/message" },
             { text: "高性能", link: "/zh/performance" },
             { text: "压力测试", link: "/zh/press-test" },
+            { text: "点个赞吧", link: "/zh/star-me" },
           ],
         },
       ],
