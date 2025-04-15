@@ -37,7 +37,7 @@ const vitePressI18nOptions = {
       ],
     },
     zh: {
-      nav: [{ text: "首页", link: "/" }],
+      nav: [{ text: "首页", link: "/zh/" }],
       sidebar: [
         {
           text: "文档（中文）",
