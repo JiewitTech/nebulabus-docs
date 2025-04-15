@@ -3,7 +3,10 @@
 这个页面将帮助你快速上手。
 
 ## 安装
-Nuget: https://www.nuget.org/packages/NebulaBus/#readme-body-tab
+Nuget: [![NuGet Version](https://img.shields.io/nuget/v/NebulaBus?style=plastic&color=blue)](https://www.nuget.org/packages/NebulaBus/) 
+
+![NuGet Downloads](https://img.shields.io/nuget/dt/NebulaBus?style=plastic&link=https%3A%2F%2Fwww.nuget.org%2Fpackages%2FNebulaBus)
+
 **VS包管理器安装**
 直接在vs包管理器中搜索NabulaBus，然后安装。
 

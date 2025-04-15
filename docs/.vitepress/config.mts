@@ -14,10 +14,13 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: "Examples",
+        text: "文档（中文）",
         items: [
-          { text: "Markdown Examples", link: "/markdown-examples" },
-          { text: "Runtime API Examples", link: "/api-examples" },
+          { text: "快速开始", link: "/zh/quick-start" },
+          { text: "配置", link: "/zh/configuration" },
+          { text: "消息", link: "/zh/message" },
+          { text: "高性能", link: "/zh/performance" },
+          { text: "压力测试", link: "/zh/press-test" },
         ],
       },
     ],
