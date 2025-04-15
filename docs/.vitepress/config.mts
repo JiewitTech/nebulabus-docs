@@ -2,7 +2,7 @@ import { defineConfig } from "vitepress";
 import { withI18n } from "vitepress-i18n";
 
 const vitePressOptions = {
-  base: "/nebulabus-docs/",
+  base: "/",
   title: "NebulaBus",
   themeConfig: {
     i18nRouting: true,
