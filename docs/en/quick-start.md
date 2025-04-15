@@ -1,11 +1,11 @@
-# 快速开始
+# Quick Start
 
-这个页面将帮助你快速上手。
+This page will help you get started quickly.
 
-## 安装
+## Install
 Nuget: https://www.nuget.org/packages/NebulaBus/#readme-body-tab
-**VS包管理器安装**
-直接在vs包管理器中搜索NabulaBus，然后安装。
+**VS Package Manager Installation**
+Search for Nebula Bus directly in the VS package manager and install it.
 
 **dotnet cli**
 
@@ -19,21 +19,21 @@ dotnet add package NebulaBus
 NuGet\Install-Package NebulaBus
 ```
 
-## 使用
+## Use
 
-**创建订阅Handler**
+**Crete subscribe handler**
 ```
 public class TestHandlerV1 : NebulaHandler<TestMessage>
 {
-    //订阅者唯一标识，用于定向发送
+    //Unique identifier for subscribers, used for targeted sending
     public override string Name => "NebulaBus.TestHandler.V1";
-    //订阅者组，用于广播，相同组的订阅都将收到消息
+    //Subscriber group, used for broadcasting, subscribers in the same group will receive messages
     public override string Group => "NebulaBus.TestHandler";
-    //重试延迟，用于配置首次失败后多久重试，默认5秒
+    //Retry delay, used to configure how long to retry after the first failure, default to 5 seconds
     public override TimeSpan RetryDelay => TimeSpan.FromSeconds(10);
-    //最大重试次数，默认10次
+    //The maximum number of retries, defaults to 10 times
     public override int MaxRetryCount => 5;
-    //重试间隔，默认10秒
+    //Retry interval, defaults to 10 seconds
     public override TimeSpan RetryInterval => TimeSpan.FromSeconds(10);
 
     protected override async Task Handle(TestMessage message, NebulaHeader header)
@@ -43,11 +43,11 @@ public class TestHandlerV1 : NebulaHandler<TestMessage>
     }
 }
 ```
-**注册NebulaBus**
+**Register NebulaBus**
 ```
 builder.Services.AddNebulaBus(options =>
 {
-    //集群名称，它是可选的，默认为程序集名称
+    //Cluster name, it's optional
     options.ClusterName = "TestCluster";
     options.UseRabbitmq(rabbitmq =>
     {
@@ -59,50 +59,51 @@ builder.Services.AddNebulaBus(options =>
 });
 ```
 
-**注册订阅者 Handler**
+**Register Handler**
 ```C#
-//一个个注册
+//Register one by one
 builder.Services.AddNebulaBusHandler<TestHandlerV1, TestMessage>();
 builder.Services.AddNebulaBusHandler<TestHandlerV2, TestMessage>();
 builder.Services.AddNebulaBusHandler<TestHandlerV3>();
 
-//批量注册
+//Batch Registration
 builder.Services.AddNebulaBusHandler(typeof(TestHandlerV1).Assembly);
 ```
 
-**广播**
+**Broadcast**
 
 ```C#
-//INebulaBus 接口
+//INebulaBus interface injected
 private readonly INebulaBus _bus;
 
-//广播传入的是订阅者组名，所有相同组的订阅者都将收到消息
 _bus.PublishAsync("NebulaBus.TestHandler", new TestMessage { Message = "Hello World" });
 ```
 
-**延迟广播**
+**Delay Broadcast**
 
 ```C#
-//INebulaBus 接口
+//INebulaBus interface
 private readonly INebulaBus _bus;
 
-//广播传入的是订阅者组名，所有相同组的订阅者都将收到消息
+//Broadcast, the incoming message is the subscriber group, and all subscribers in the same group will receive the message
 _bus.PublishAsync(TimeSpan.FromSeconds(5), "NebulaBus.TestHandler", new TestMessage { Message = "Hello World" });
 ```
-**定向发送**
+**Directed sending**
 
 ```C#
-//INebulaBus 接口
+//INebulaBus interface
 private readonly INebulaBus _bus;
 
-//定向发送传入的是订阅者Name，只有该Name的订阅者会收到消息
+//The incoming message is directed to the subscriber name, and only subscribers with that name will receive the message
 _bus.PublishAsync("NebulaBus.TestHandler.V1", new TestMessage { Message = "Hello World" });
 ```
-**延迟定向发送**
+**Delay Directed sending**
 
 ```C#
-//INebulaBus 接口
+//INebulaBus interface
 private readonly INebulaBus _bus;
 
 _bus.PublishAsync(TimeSpan.FromSeconds(5), "NebulaBus.TestHandler.V1",new TestMessage { Message = "Hello World" });
 ```
+
+
