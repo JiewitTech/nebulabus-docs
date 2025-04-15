@@ -3,7 +3,7 @@
 
 ## 发送消息
 使用INebulaBus发送出去的Message就是消息，让我们看下它的声明：
-```C#
+```csharp
 public interface INebulaBus
 {
     Task PublishAsync<T>(string nameOrGroup, T message) where T : class, new();
@@ -18,7 +18,7 @@ public interface INebulaBus
 ## 订阅消息
 
 要订阅消息，只需要实现NebulaHandler<>抽象类即可，下面是一个附带完整配置的Handler例子：
-```C#
+```csharp
 public class TestHandlerV1 : NebulaHandler<TestMessage>
 {
     public override string Name => "NebulaBus.TestHandler.V1";
@@ -61,7 +61,7 @@ public class TestHandlerV1 : NebulaHandler<TestMessage>
 
 ## 广播和定向发送消息
 上面的四个方法均支持广播消息，即发送给所有订阅者，这取决于你传入的nameOrGroup参数。如果传入的nameOrGroup是一个group，那么消息将会发送给组内的所有订阅者，如果传入的是一个name，那么消息将会发送给一个消息名的订阅者。举个例子，如果你定义了两个Handler如下:
-```C#
+```csharp
 public class TestHandlerV3 : NebulaHandler<TestMessage>
 {
     public override string Name => "NebulaBus.TestHandler.V3";
@@ -75,7 +75,7 @@ public class TestHandlerV3 : NebulaHandler<TestMessage>
 }   
 ```
 
-```C#
+```csharp
 public class TestHandlerV4 : NebulaHandler<TestMessage>
 {
     public override string Name => "NebulaBus.TestHandler.V4";
@@ -89,11 +89,11 @@ public class TestHandlerV4 : NebulaHandler<TestMessage>
 }
 ```
 以上两个Handler都订阅了NebulaBus.TestHandler这个组，如果使用下面的方法发送消息时，因为我们传入的是组名NebulaBus.TestHandler 那么两个Handler都会收到消息。
-```C#
+```csharp
 await _bus.PublishAsync("NebulaBus.TestHandler", new TestMessage { Message = "Hello World" });
 ```
 但是第一个Handler的Name是NebulaBus.TestHandler.V3，第二个Handler的Name是NebulaBus.TestHandler.V4，如果我们使用下面的方法发送消息时，只有第一个Handler会收到消息,因为我们传入的是Handler的Name，而不是组名。
-```C#
+```csharp
 await _bus.PublishAsync("NebulaBus.TestHandler.V3", new TestMessage { Message = "Hello World" });
 ```
 
@@ -101,7 +101,7 @@ await _bus.PublishAsync("NebulaBus.TestHandler.V3", new TestMessage { Message = 
 
 ## 延迟消息
 不管是消息的广播还是定向发送，NebulaBus都支持延迟消息，订阅者将在延迟时间后收到消息，你可以使用下面的方法发送延迟消息：
-```C#
+```csharp
 await _bus.PublishAsync(TimeSpan.FromSeconds(5), "NebulaBus.TestHandler.V3", new TestMessage { Message = "Hello World" });  
 ```
 只需要传入一个延迟时间即可，延迟时间越长，消息发送越晚。
@@ -121,7 +121,7 @@ NebulaBus支持消息头NebulaHeader，消息头是一个字典，我们提供�
 - NebulaHeader.Group: 订阅者组，它就是你配置的订阅者组名称
 
 下面是发送一个带有消息头的消息的例子：
-```C#
+```csharp
 await _bus.PublishAsync("NebulaBus.TestHandler.V3", new TestMessage { Message = "Hello World" }, new Dictionary<string, string>()
 {
     {NebulaHeader.RequestId , Guid.NewGuid().ToString()}, //指定RequestId
@@ -130,7 +130,7 @@ await _bus.PublishAsync("NebulaBus.TestHandler.V3", new TestMessage { Message = 
 ```
 
 TestHandlerV3将收到消息，并且消息头中包含RequestId和自定义的TestHeaderKey。
-```C#
+```csharp
 public class TestHandlerV3 : NebulaHandler<TestMessage>
 {
     public override string Name => "NebulaBus.TestHandler.V3";
@@ -150,7 +150,7 @@ public class TestHandlerV3 : NebulaHandler<TestMessage>
 ## 消息重试
 NebulaBus支持消息重试，当消息处理失败时，NebulaBus会自动重试，重试次数默认为10次，你可以在Handler中设置重试次数。当超出重试次数依然失败时，你可以在FallBackHandler中处理失败的消息，该方法的第三个参数为Exception，表示失败时的异常信息。
 
-```C#
+```csharp
 protected override async Task FallBackHandler(TestMessage? message, NebulaHeader header, Exception exception)
 {
     

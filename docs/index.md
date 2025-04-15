@@ -10,6 +10,12 @@ hero:
     - theme: brand
       text: Quick Start
       link: /quick-start
+    - theme: alt
+      text: Github
+      link: https://github.com/JiewitTech/NebulaBus
+    - theme: alt
+      text: Gitee
+      link: https://gitee.com/jiewit-tech/NebulaBus
 
 features:
   - title: Message Broadcasting

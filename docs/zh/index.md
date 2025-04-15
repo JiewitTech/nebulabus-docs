@@ -10,6 +10,12 @@ hero:
     - theme: brand
       text: 快速开始
       link: /zh/quick-start
+    - theme: alt
+      text: Github
+      link: https://github.com/JiewitTech/NebulaBus
+    - theme: alt
+      text: Gitee
+      link: https://gitee.com/jiewit-tech/NebulaBus
 
 features:
   - title: 消息广播

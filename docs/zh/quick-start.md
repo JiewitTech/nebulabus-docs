@@ -25,7 +25,7 @@ NuGet\Install-Package NebulaBus
 ## 使用
 
 **创建订阅Handler**
-```C#
+```csharp
 public class TestHandlerV1 : NebulaHandler<TestMessage>
 {
     //订阅者唯一标识，用于定向发送
@@ -47,7 +47,7 @@ public class TestHandlerV1 : NebulaHandler<TestMessage>
 }
 ```
 **注册NebulaBus**
-```C#
+```csharp
 builder.Services.AddNebulaBus(options =>
 {
     //集群名称，它是可选的，默认为程序集名称
@@ -63,7 +63,7 @@ builder.Services.AddNebulaBus(options =>
 ```
 
 **注册订阅者 Handler**
-```C#
+```csharp
 //一个个注册
 builder.Services.AddNebulaBusHandler<TestHandlerV1, TestMessage>();
 builder.Services.AddNebulaBusHandler<TestHandlerV2, TestMessage>();
@@ -75,7 +75,7 @@ builder.Services.AddNebulaBusHandler(typeof(TestHandlerV1).Assembly);
 
 **广播**
 
-```C#
+```csharp
 //INebulaBus 接口
 private readonly INebulaBus _bus;
 
@@ -85,7 +85,7 @@ _bus.PublishAsync("NebulaBus.TestHandler", new TestMessage { Message = "Hello Wo
 
 **延迟广播**
 
-```C#
+```csharp
 //INebulaBus 接口
 private readonly INebulaBus _bus;
 
@@ -94,7 +94,7 @@ _bus.PublishAsync(TimeSpan.FromSeconds(5), "NebulaBus.TestHandler", new TestMess
 ```
 **定向发送**
 
-```C#
+```csharp
 //INebulaBus 接口
 private readonly INebulaBus _bus;
 
@@ -103,7 +103,7 @@ _bus.PublishAsync("NebulaBus.TestHandler.V1", new TestMessage { Message = "Hello
 ```
 **延迟定向发送**
 
-```C#
+```csharp
 //INebulaBus 接口
 private readonly INebulaBus _bus;
 
