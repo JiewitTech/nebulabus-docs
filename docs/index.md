@@ -8,18 +8,17 @@ hero:
   tagline: Let developers focus on development
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
-    - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: Quick Start
+      link: /quick-start
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: Message Broadcasting
+    details: Support broadcasting messages to subscribers in the same group
+  - title: Message Sending
+    details: Support sending messages to designated subscribers
+  - title: Delay Publish
+    details: Both broadcasting and sending support delayed sending
+  - title: Distributed
+    details: Support distributed cluster deployment and horizontal scalability
 ---
 
