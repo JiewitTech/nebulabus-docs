@@ -24,7 +24,7 @@ NuGet\Install-Package NebulaBus
 ## Use
 
 **Crete subscribe handler**
-```
+```C#
 public class TestHandlerV1 : NebulaHandler<TestMessage>
 {
     //Unique identifier for subscribers, used for targeted sending
@@ -46,7 +46,7 @@ public class TestHandlerV1 : NebulaHandler<TestMessage>
 }
 ```
 **Register NebulaBus**
-```
+```C#
 builder.Services.AddNebulaBus(options =>
 {
     //Cluster name, it's optional

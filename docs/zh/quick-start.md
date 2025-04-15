@@ -22,7 +22,7 @@ NuGet\Install-Package NebulaBus
 ## 使用
 
 **创建订阅Handler**
-```
+```C#
 public class TestHandlerV1 : NebulaHandler<TestMessage>
 {
     //订阅者唯一标识，用于定向发送
@@ -44,7 +44,7 @@ public class TestHandlerV1 : NebulaHandler<TestMessage>
 }
 ```
 **注册NebulaBus**
-```
+```C#
 builder.Services.AddNebulaBus(options =>
 {
     //集群名称，它是可选的，默认为程序集名称
