@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "NebulaBus - High performance NET Distributed Event Bus Framework"
+  name: "NebulaBus - High performance .NET Distributed Event Bus Framework"
   text: ""
   tagline: Let developers focus on development
   actions:
