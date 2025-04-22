@@ -4,23 +4,27 @@ This page will help you get started quickly.
 
 ## Installation
 
-Nuget: [![NuGet Version](https://img.shields.io/nuget/v/NebulaBus?style=plastic&color=blue)](https://www.nuget.org/packages/NebulaBus/)
+Nuget:
 
-![NuGet Downloads](https://img.shields.io/nuget/dt/NebulaBus?style=plastic&link=https%3A%2F%2Fwww.nuget.org%2Fpackages%2FNebulaBus)
+![NuGet Version](https://img.shields.io/nuget/v/NebulaBus.Store.Memory?style=plastic&label=NebulaBus.Store.Memory&color=blue&link=https%3A%2F%2Fwww.nuget.org%2Fpackages%2FNebulaBus.Store.Memory%2F)
+
+![NuGet Version](https://img.shields.io/nuget/v/NebulaBus.Transport.Memory?style=plastic&label=NebulaBus.Transport.Memory&color=blue&link=https%3A%2F%2Fwww.nuget.org%2Fpackages%2FNebulaBus.Transport.Memory%2F)
 
 **VS package manager installation** 
 
-Search for NabulaBus directly in the vs package manager and install it.
+Search for NebulaBus.Store.Memory and NebulaBus.Transport.Memory directly in the vs package manager and install it.
 
 **dotnet cli**
-
-dotnet add package NebulaBus
-
+```shell
+dotnet add package NebulaBus.Store.Memory
+dotnet add package NebulaBus.Transport.Memory
+```
 
 **Package Manager**
-
-NuGet\Install-Package NebulaBus
-
+```shell
+NuGet\Install-Package NebulaBus.Store.Memory
+NuGet\Install-Package NebulaBus.Transport.Memory
+```
 
 ## use
 
@@ -56,16 +60,11 @@ builder.Services.AddNebulaBus(options =>
 {
     //Cluster name, it is optional and defaults to the assembly name
     options.ClusterName = "TestCluster";
-    options.UseRabbitmq(rabbitmq =>
-    {
-        rabbitmq.HostName = “localhost”;
-        rabbitmq.UserName = “guest”;
-        rabbitmq.Password = “guest”;
-        rabbitmq.VirtualHost = "/";
-    });
+    options.ExecuteThreadCount = 1;
+    options.UseMemoryTransport();
+    options.UserMemoryStore();
 });
 ```
-
 
 **Sign up for the Subscriber Handler**
 
@@ -117,4 +116,8 @@ private readonly INebulaBus _bus;
 
 _bus.PublishAsync(TimeSpan.FromSeconds(5), "NebulaBus.TestHandler.V1",new TestMessage { Message = "Hello World" });
 ```
+
+**Full Example**
+
+[Quick Start Full Example](https://github.com/JiewitTech/NebulaBus/tree/main/src/FullMemoryWebApiSample)  
 

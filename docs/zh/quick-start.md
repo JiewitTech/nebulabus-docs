@@ -3,23 +3,27 @@
 这个页面将帮助你快速上手。
 
 ## 安装
-Nuget: [![NuGet Version](https://img.shields.io/nuget/v/NebulaBus?style=plastic&color=blue)](https://www.nuget.org/packages/NebulaBus/) 
+Nuget: 
 
-![NuGet Downloads](https://img.shields.io/nuget/dt/NebulaBus?style=plastic&link=https%3A%2F%2Fwww.nuget.org%2Fpackages%2FNebulaBus)
+![NuGet Version](https://img.shields.io/nuget/v/NebulaBus.Store.Memory?style=plastic&label=NebulaBus.Store.Memory&color=blue&link=https%3A%2F%2Fwww.nuget.org%2Fpackages%2FNebulaBus.Store.Memory%2F)
+
+![NuGet Version](https://img.shields.io/nuget/v/NebulaBus.Transport.Memory?style=plastic&label=NebulaBus.Transport.Memory&color=blue&link=https%3A%2F%2Fwww.nuget.org%2Fpackages%2FNebulaBus.Transport.Memory%2F)
 
 **VS包管理器安装**
-直接在vs包管理器中搜索NabulaBus，然后安装。
+直接在vs包管理器中搜索NabulaBus.Store.Memory 和NebulaBus.Transport.Memory，然后安装。
 
 **dotnet cli**
 
-```
-dotnet add package NebulaBus
+```shell
+dotnet add package NebulaBus.Store.Memory
+dotnet add package NebulaBus.Transport.Memory
 ```
 
 **Package Manager**
 
-```
-NuGet\Install-Package NebulaBus
+```shell
+NuGet\Install-Package NebulaBus.Store.Memory
+NuGet\Install-Package NebulaBus.Transport.Memory
 ```
 
 ## 使用
@@ -52,13 +56,9 @@ builder.Services.AddNebulaBus(options =>
 {
     //集群名称，它是可选的，默认为程序集名称
     options.ClusterName = "TestCluster";
-    options.UseRabbitmq(rabbitmq =>
-    {
-        rabbitmq.HostName = “localhost”;
-        rabbitmq.UserName = “guest”;
-        rabbitmq.Password = “guest”;
-        rabbitmq.VirtualHost = "/";
-    });
+    options.ExecuteThreadCount = 1;
+    options.UseMemoryTransport();
+    options.UserMemoryStore();
 });
 ```
 
@@ -109,3 +109,8 @@ private readonly INebulaBus _bus;
 
 _bus.PublishAsync(TimeSpan.FromSeconds(5), "NebulaBus.TestHandler.V1",new TestMessage { Message = "Hello World" });
 ```
+
+**完整例子**
+
+[快速开始的完整例子](https://github.com/JiewitTech/NebulaBus/tree/main/src/FullMemoryWebApiSample)  
+
