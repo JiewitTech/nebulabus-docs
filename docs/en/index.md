@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: Quick Start
-      link: /quick-start
+      link: /en/quick-start
     - theme: alt
       text: Github
       link: https://github.com/JiewitTech/NebulaBus

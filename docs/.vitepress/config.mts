@@ -4,6 +4,9 @@ import {withI18n} from "vitepress-i18n";
 const vitePressOptions = {
     base: "/",
     title: "NebulaBus",
+    rewrites: {
+        'en/:rest*': ':rest*'
+    },
     themeConfig: {
         i18nRouting: true,
         socialLinks: [
@@ -26,17 +29,31 @@ const vitePressI18nOptions = {
                 {
                     text: "Documentation",
                     items: [
-                        {text: "Quick Start", link: "/quick-start"},
+                        {text: "Quick Start", link: "/en/quick-start"},
                         {
                             text: "Disposition",
                             items: [
-                                {text: "Global configuration", link: "/configuration"},
+                                {text: 'Basic', link: '/en/disposition/basic'},
+                                {
+                                    text: 'Transport',
+                                    items: [
+                                        {text: 'Memory', link: '/en/disposition/transport/memory'},
+                                        {text: 'Rabbitmq', link: '/en/disposition/transport/rabbitmq'},
+                                    ]
+                                },
+                                {
+                                    text: 'Store',
+                                    items: [
+                                        {text: 'Memory', link: '/en/disposition/store/memory'},
+                                        {text: 'Redis', link: '/en/disposition/store/redis'},
+                                    ]
+                                },
                             ]
                         },
-                        {text: "Message", link: "/message"},
-                        {text: "Performance", link: "/performance"},
-                        {text: "Stress Test", link: "/press-test"},
-                        {text: "Star Me", link: "/star-me"},
+                        {text: "Message", link: "/en/message"},
+                        {text: "Performance", link: "/en/performance"},
+                        {text: "Stress Test", link: "/en/press-test"},
+                        {text: "Star Me", link: "/en/star-me"},
                     ],
                 },
             ],
@@ -57,6 +74,13 @@ const vitePressI18nOptions = {
                                     items: [
                                         {text: '内存传输', link: '/zh/disposition/transport/memory'},
                                         {text: 'Rabbitmq', link: '/zh/disposition/transport/rabbitmq'},
+                                    ]
+                                },
+                                {
+                                    text: '存储',
+                                    items: [
+                                        {text: '内存存储', link: '/zh/disposition/store/memory'},
+                                        {text: 'Redis', link: '/zh/disposition/store/redis'},
                                     ]
                                 },
                             ]
