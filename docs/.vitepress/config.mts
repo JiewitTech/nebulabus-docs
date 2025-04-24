@@ -29,31 +29,31 @@ const vitePressI18nOptions = {
                 {
                     text: "Documentation",
                     items: [
-                        {text: "Quick Start", link: "/en/quick-start"},
+                        {text: "Quick Start", link: "/quick-start"},
                         {
                             text: "Disposition",
                             items: [
-                                {text: 'Basic', link: '/en/disposition/basic'},
+                                {text: 'Basic', link: '/disposition/basic'},
                                 {
                                     text: 'Transport',
                                     items: [
-                                        {text: 'Memory', link: '/en/disposition/transport/memory'},
-                                        {text: 'Rabbitmq', link: '/en/disposition/transport/rabbitmq'},
+                                        {text: 'Memory', link: '/disposition/transport/memory'},
+                                        {text: 'Rabbitmq', link: '/disposition/transport/rabbitmq'},
                                     ]
                                 },
                                 {
                                     text: 'Store',
                                     items: [
-                                        {text: 'Memory', link: '/en/disposition/store/memory'},
-                                        {text: 'Redis', link: '/en/disposition/store/redis'},
+                                        {text: 'Memory', link: '/disposition/store/memory'},
+                                        {text: 'Redis', link: '/disposition/store/redis'},
                                     ]
                                 },
                             ]
                         },
-                        {text: "Message", link: "/en/message"},
-                        {text: "Performance", link: "/en/performance"},
-                        {text: "Stress Test", link: "/en/press-test"},
-                        {text: "Star Me", link: "/en/star-me"},
+                        {text: "Message", link: "/message"},
+                        {text: "Performance", link: "/performance"},
+                        {text: "Stress Test", link: "/press-test"},
+                        {text: "Star Me", link: "/star-me"},
                     ],
                 },
             ],
