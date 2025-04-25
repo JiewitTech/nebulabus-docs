@@ -11,3 +11,6 @@ dotnet add package NebulaBus.Transport.Memory
 ```csharp
 options.UseMemoryTransport();
 ```
+
+具体示例可参考：
+> https://github.com/JiewitTech/NebulaBus/tree/main/src/Samples/FullMemoryWebApiSample

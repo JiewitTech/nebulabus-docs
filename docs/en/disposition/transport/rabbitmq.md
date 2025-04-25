@@ -30,3 +30,6 @@ The UseRabbitMqTransport method passes Action \<RabbitMqOptions \>, so RabbitMqO
 - SslOption: Rabbitmq SSL configuration, the default is null, how to use SSL, please refer to the Rabbitmq.NET Client documentation.
 - Qos: The default value of Rabbitmq QoS is 0, which means that there is no limit, how to use Qos, please refer to the Rabbitmq.NET Client documentation.
 - GetQos: This is the Func<string, string, ushort> type, which indicates the function to obtain Qos, the default value is null, the first parameter is the Name of the Handler, and the second parameter is the Handler Group
+
+Specific examples can refer to:
+> https://github.com/JiewitTech/NebulaBus/tree/main/src/Samples/RabbitmqWithRedisStoreWebApiSample

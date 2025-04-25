@@ -16,4 +16,8 @@ options.UseSqlStore(new SqlSugar.ConnectionConfig()
     DbType=SqlSugar.DbType.MySql
 });
 ```
-The UseSqlStore method passes in the SQL Sugar.ConnectConfig object, and NebulaBus SQL stores using SQL Sugar as the SQL client. Therefore, it supports multiple databases such as MySql, SQL Server, SQLite, Oracle, PostgreSQL, Dameng, DB2, Duckdb, etc. For more information, please refer to the SQLSugar documentation: https://www.donet5.com/Home/Doc?typeId=1180
+The UseSqlStore method passes in the SQL Sugar.ConnectConfig object, and NebulaBus SQL stores using SQL Sugar as the SQL client. Therefore, it supports multiple databases such as MySql, SQL Server, SQLite, Oracle, PostgreSQL, Dameng, DB2, Duckdb, etc. For more information, please refer to the SQLSugar documentation: 
+> https://www.donet5.com/Home/Doc?typeId=1180
+
+Specific examples can refer to:
+> https://github.com/JiewitTech/NebulaBus/tree/main/src/Samples/RabbitmqWithSqlStoreWebApiSample

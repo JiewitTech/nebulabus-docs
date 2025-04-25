@@ -52,6 +52,7 @@ const vitePressI18nOptions = {
                             ]
                         },
                         {text: "Message", link: "/message"},
+                        {text: "Filter", link: "/filter"},
                         {text: "Performance", link: "/performance"},
                         {text: "Stress Test", link: "/press-test"},
                         {text: "Star Me", link: "/star-me"},
@@ -88,6 +89,7 @@ const vitePressI18nOptions = {
                             ]
                         },
                         {text: "消息", link: "/zh/message"},
+                        {text: "过滤器", link: "/zh/filter"},
                         {text: "高性能", link: "/zh/performance"},
                         {text: "压力测试", link: "/zh/press-test"},
                         {text: "点个赞吧", link: "/zh/star-me"},

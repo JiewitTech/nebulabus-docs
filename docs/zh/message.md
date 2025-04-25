@@ -51,8 +51,8 @@ public class TestHandlerV1 : NebulaHandler<TestMessage>
 他的配置参数如下：
 - Name：Handler的名称，用于标识Handler，建议使用唯一的，用于定向发送。
 - Group：Handler的组，用于标识Handler组，用户消息广播。
-- RetryDelay：消息首次重试的延迟时间，默认为10秒。
-- MaxRetryCount：消息最大重试次数，默认为5次。
+- RetryDelay：消息首次重试的延迟时间，默认为5秒。
+- MaxRetryCount：消息最大重试次数，默认为10次，当Handler发生错误时，会立即重试3次，本配置为这三次重试之后的最大重试次数。
 - RetryInterval：消息重试间隔时间，默认为10秒。
 - ExecuteThreadCount：消息处理线程数，默认为null，如果设置为null，则使用全局配置的线程数。
 
@@ -148,7 +148,7 @@ public class TestHandlerV3 : NebulaHandler<TestMessage>
 ```
 
 ## 消息重试
-NebulaBus支持消息重试，当消息处理失败时，NebulaBus会自动重试，重试次数默认为10次，你可以在Handler中设置重试次数。当超出重试次数依然失败时，你可以在FallBackHandler中处理失败的消息，该方法的第三个参数为Exception，表示失败时的异常信息。
+NebulaBus支持消息重试，当消息处理失败时，NebulaBus会立即重试3次，然后在配置的延迟时间后重试，重试次数默认为10次，你可以在Handler中设置重试次数。当超出重试次数依然失败时，你可以在FallBackHandler中处理失败的消息，该方法的第三个参数为Exception，表示失败时的异常信息。具体请参考过滤器章节。
 
 ```csharp
 protected override async Task FallBackHandler(TestMessage? message, NebulaHeader header, Exception exception)
@@ -157,4 +157,7 @@ protected override async Task FallBackHandler(TestMessage? message, NebulaHeader
 }
 ```
 所有重试消息和延迟消息都是由内置的Quartz.Net定时任务调度的，NebulaBus内置了Quartz.Net, 你不需要关心它的配置。
+
+具体示例可参考：
+> https://github.com/JiewitTech/NebulaBus/tree/main/src/Samples/LogicSamples/Handlers
 

@@ -14,4 +14,8 @@ options.UseRedisStore("");
 ```
 UseRedisStore 方法传入的是Redis连接字符串
 字符串格式为："127.0.0.1:6379,password=******,defaultDatabase=0"，如果是集群模式，则需要配置多个Redis连接字符串，以分号\;分隔。
-由于NebulaBus使用FreeRedis作为Redis客户端，因此更多参数请自行参考FreerRedis文档：https://github.com/2881099/FreeRedis
+由于NebulaBus使用FreeRedis作为Redis客户端，因此更多参数请自行参考FreerRedis文档：
+> https://github.com/2881099/FreeRedis
+
+具体代码示例可以参考：
+> https://github.com/JiewitTech/NebulaBus/tree/main/src/Samples/RabbitmqWithRedisStoreWebApiSample

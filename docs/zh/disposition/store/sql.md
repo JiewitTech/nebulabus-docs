@@ -16,4 +16,8 @@ options.UseSqlStore(new SqlSugar.ConnectionConfig()
     DbType=SqlSugar.DbType.MySql
 });
 ```
-UseSqlStore 方法传入的是SqlSugar.ConnectionConfig 对象，NebulaBus Sql 存储使用SqlSugar作为Sql客户端，因此支持MySql、SqlServer、Sqlite、Oracle 、 postgresql、达梦、DB2、Duckdb等多种数据库，更多信息请自行参考SqlSugar文档：https://www.donet5.com/Home/Doc?typeId=1180
+UseSqlStore 方法传入的是SqlSugar.ConnectionConfig 对象，NebulaBus Sql 存储使用SqlSugar作为Sql客户端，因此支持MySql、SqlServer、Sqlite、Oracle 、 postgresql、达梦、DB2、Duckdb等多种数据库，更多信息请自行参考SqlSugar文档：
+> https://www.donet5.com/Home/Doc?typeId=1180
+
+具体代码示例可参考：
+> https://github.com/JiewitTech/NebulaBus/tree/main/src/Samples/RabbitmqWithSqlStoreWebApiSample

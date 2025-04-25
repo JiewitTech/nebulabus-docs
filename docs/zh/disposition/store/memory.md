@@ -12,3 +12,6 @@ dotnet add package NebulaBus.Store.Memory
 ```csharp
 options.UseMemoryStore();
 ```
+
+具体示例可参考：
+> https://github.com/JiewitTech/NebulaBus/tree/main/src/Samples/FullMemoryWebApiSample

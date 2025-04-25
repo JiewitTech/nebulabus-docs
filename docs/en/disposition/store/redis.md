@@ -14,4 +14,8 @@ options.UseRedisStore("");
 ```
 The UseRedisStore method passes in a Redis connection string
 The string format is: "127.0.0.1:6379, password=******, defaultDatabase=0". If it is in cluster mode, multiple Redis connection strings need to be configured with semicolons; separate.
-Due to NebulaBus using FreeRedis as its Redis client, please refer to the FreerRedis documentation for more parameters: https://github.com/2881099/FreeRedis
+Due to NebulaBus using FreeRedis as its Redis client, please refer to the FreerRedis documentation for more parameters:
+> https://github.com/2881099/FreeRedis
+
+Specific examples can refer to:
+> https://github.com/JiewitTech/NebulaBus/tree/main/src/Samples/RabbitmqWithRedisStoreWebApiSample

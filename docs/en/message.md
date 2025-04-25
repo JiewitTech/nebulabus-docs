@@ -56,8 +56,8 @@ public class TestHandlerV1 : NebulaHandler<TestMessage>
 His configuration parameters are as follows:
 - Name: The name of the Handler, used to identify the Handler. It is recommended to use a unique one for directed sending.
 - Group: Handler's group, used to identify the Handler group and broadcast user messages.
-- RetroDelay: The default delay time for the first message retry is 10 seconds.
-- MaxRetryCount: The maximum number of retries for a message, which defaults to 5 times.
+- RetroDelay: The default delay time for the first message retry is 5 seconds.
+- MaxRetryCount: The maximum number of message retries is 10 by default. When the Handler encounters an error, it will immediately retry 3 times. This configuration is the maximum number of retries after these three retries.
 - RetroInterval: Message retry interval, default is 10 seconds.
 - ExecuteThreadCount: The number of message processing threads, default to null. If set to null, the globally configured thread count will be used.
 
@@ -119,16 +119,16 @@ Just pass in a delay time, the longer the delay time, the later the message is s
 ## Message Header
 NebulaBus supports the message header NebulaHeader, which is a dictionary. We provide built-in key value pairs, and you can add some custom information to the message header. Here are the built-in key value pairs:
 
-- NebulaHeader. RequestId： Request Id, used to track requests. If you pass in this key value pair, it will be based on what you pass in. If you do not pass it, a random UID will be generated.
-- NebulaHeader. MessageId： Message Id, used to track messages, each sent message will create a unique Id, which cannot be overwritten. NebulaBus uses Snowflake The Core Snowflake algorithm generates a Message ID. For details, please refer to: https://github.com/stulzq/snowflake-net .
-- NebulaHeader. RetryCount： The number of retries, if the message fails, Nebula Bus will automatically retry, with a default retry count of 10 times.
-- NebulaHeader. Sender: Sender, used to record the information of the message sender, its value format is {machine name} {Assembly Name}
+- NebulaHeader.RequestId： Request Id, used to track requests. If you pass in this key value pair, it will be based on what you pass in. If you do not pass it, a random UID will be generated.
+- NebulaHeader.MessageId： Message Id, used to track messages, each sent message will create a unique Id, which cannot be overwritten. NebulaBus uses Snowflake The Core Snowflake algorithm generates a Message ID. For details, please refer to: https://github.com/stulzq/snowflake-net .
+- NebulaHeader.RetryCount： The number of retries, if the message fails, Nebula Bus will automatically retry, with a default retry count of 10 times.
+- NebulaHeader.Sender: Sender, used to record the information of the message sender, its value format is {machine name} {Assembly Name}
 - NebulaHeader. Consumer： Consumer, used to record information about message recipients, its value format is {machine name} {Assembly Name}
-- NebulaHeader. SendTimeStamp： Sending time, used to record the time of message sending, its value is UTC timestamp, and the unit is seconds.
-- NebulaHeader. Exception:   Exception information, used to record the exception information when a message fails to be sent, and its value is the result of the exception's Json().
-- NebulaHeader. MessageType:   Message type, used to record the type of message, its value is the type name of the message, for example: NebulaBus.TestMessage。
-- NebulaHeader. Name:  The subscriber name is the unique name of the subscriber you have configured
-- NebulaHeader. Group:  The subscriber group is the name of the subscriber group you have configured
+- NebulaHeader.SendTimeStamp： Sending time, used to record the time of message sending, its value is UTC timestamp, and the unit is seconds.
+- NebulaHeader.Exception:   Exception information, used to record the exception information when a message fails to be sent, and its value is the result of the exception's Json().
+- NebulaHeader.MessageType:   Message type, used to record the type of message, its value is the type name of the message, for example: NebulaBus.TestMessage。
+- NebulaHeader.Name:  The subscriber name is the unique name of the subscriber you have configured
+- NebulaHeader.Group:  The subscriber group is the name of the subscriber group you have configured
 
 Here is an example of sending a message with a header:
 
@@ -161,7 +161,7 @@ public class TestHandlerV3 : NebulaHandler
 
 ## Message retry
 
-NebulaBus supports message retry, when the message processing fails, NebulaBus will automatically retry, the number of retries is set to 10 by default, you can set the number of retries in the Handler. If the number of retries exceeds the number of retries and still fails, you can process the failure message in the FallBackHandler, and the third parameter of the method is Exception, which indicates the exception information at the time of failure.
+NebulaBus supports message retry. When message processing fails, NebulaBus will immediately retry 3 times and then retry after the configured delay time. The default retry count is 10 times, and you can set the retry count in the Handler. When the retry attempts still fail, you can handle the failed message in FallBackHandler. The third parameter of this method is Exception, which represents the exception information at the time of failure. Please refer to the filter section for details.
 
 ```csharp
 protected override async Task FallBackHandler(TestMessage? message, NebulaHeader header, Exception exception)
@@ -172,3 +172,5 @@ protected override async Task FallBackHandler(TestMessage? message, NebulaHeader
 
 All retry messages and delay messages are scheduled by the built-in Quartz.Net scheduled tasks, and NebulaBus has built-in Quartz.Net, so you don't need to care about its configuration.
 
+Specific examples can refer to:
+> https://github.com/JiewitTech/NebulaBus/tree/main/src/Samples/LogicSamples/Handlers
