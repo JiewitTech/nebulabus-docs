@@ -46,6 +46,7 @@ const vitePressI18nOptions = {
                                     items: [
                                         {text: 'Memory', link: '/disposition/store/memory'},
                                         {text: 'Redis', link: '/disposition/store/redis'},
+                                        {text: 'Sql', link: '/disposition/store/sql'},
                                     ]
                                 },
                             ]
@@ -81,6 +82,7 @@ const vitePressI18nOptions = {
                                     items: [
                                         {text: '内存存储', link: '/zh/disposition/store/memory'},
                                         {text: 'Redis', link: '/zh/disposition/store/redis'},
+                                        {text: 'Sql', link: '/zh/disposition/store/sql'},
                                     ]
                                 },
                             ]
